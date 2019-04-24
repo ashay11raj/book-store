@@ -1,5 +1,6 @@
 package com.store.book.bookstore.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
@@ -15,10 +16,11 @@ public class Book {
     String author;
 
     @DateTimeFormat(pattern="MM/dd/yyyy")
-    @NotNull(message = "required") @Past
+    @JsonFormat(pattern="MM/dd/yyyy")
+    @NotNull(message = "required")
     Date dateOfPublication;
 
-    public Book(@NotNull(message = "required") long bookId, @NotNull(message = "required") String bookName, @NotNull(message = "required") String author, @NotNull(message = "required") @Past Date dateOfPublication) {
+    public Book(@NotNull(message = "required") long bookId, @NotNull(message = "required") String bookName, @NotNull(message = "required") String author, @NotNull(message = "required") Date dateOfPublication) {
         this.bookId = bookId;
         this.bookName = bookName;
         this.author = author;
