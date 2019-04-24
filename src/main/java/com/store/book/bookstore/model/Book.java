@@ -9,29 +9,29 @@ import java.util.Date;
 
 public class Book {
     @NotNull(message = "required")
-    long bookId;
+    private int bookId;
     @NotNull(message = "required")
-    String bookName;
+    private String bookName;
     @NotNull(message = "required")
-    String author;
+    private String author;
 
     @DateTimeFormat(pattern="MM/dd/yyyy")
     @JsonFormat(pattern="MM/dd/yyyy")
     @NotNull(message = "required")
-    Date dateOfPublication;
+    private Date dateOfPublication;
 
-    public Book(@NotNull(message = "required") long bookId, @NotNull(message = "required") String bookName, @NotNull(message = "required") String author, @NotNull(message = "required") Date dateOfPublication) {
+    public Book(@NotNull(message = "required") int bookId, @NotNull(message = "required") String bookName, @NotNull(message = "required") String author, @NotNull(message = "required") Date dateOfPublication) {
         this.bookId = bookId;
         this.bookName = bookName;
         this.author = author;
         this.dateOfPublication = dateOfPublication;
     }
 
-    public long getBookId() {
+    public int getBookId() {
         return bookId;
     }
 
-    public void setBookId(long bookId) {
+    public void setBookId(int bookId) {
         this.bookId = bookId;
     }
 

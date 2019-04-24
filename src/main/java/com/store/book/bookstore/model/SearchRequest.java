@@ -3,11 +3,15 @@ package com.store.book.bookstore.model;
 import javax.validation.constraints.NotNull;
 
 public class SearchRequest {
-    public Long getBookId() {
+    private int bookId;
+    private String bookName;
+    private String author;
+
+    public int getBookId() {
         return bookId;
     }
 
-    public void setBookId(Long bookId) {
+    public void setBookId(int bookId) {
         this.bookId = bookId;
     }
 
@@ -27,7 +31,5 @@ public class SearchRequest {
         this.author = author;
     }
 
-    Long bookId;
-    String bookName;
-    String author;
+
 }

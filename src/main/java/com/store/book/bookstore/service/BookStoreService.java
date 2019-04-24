@@ -11,6 +11,6 @@ public interface BookStoreService {
     List<Book> getAllBookOrderBy(String orderBy);
     List<Book> searchBook(SearchRequest searchRequest);
     boolean addNewBook(Book book);
-    boolean removeBook(long id);
+    boolean removeBook(int id);
     boolean updateExistingBook(Book book);
 }
