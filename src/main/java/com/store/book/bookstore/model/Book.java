@@ -15,8 +15,8 @@ public class Book {
     @NotNull(message = "required")
     private String author;
 
-    @DateTimeFormat(pattern="MM/dd/yyyy")
-    @JsonFormat(pattern="MM/dd/yyyy")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd")
     @NotNull(message = "required")
     private Date dateOfPublication;
 

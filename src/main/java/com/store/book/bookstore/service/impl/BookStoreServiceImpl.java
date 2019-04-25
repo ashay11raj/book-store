@@ -17,14 +17,14 @@ import java.util.stream.IntStream;
 @Service
 public class BookStoreServiceImpl implements BookStoreService {
     Logger logger = LoggerFactory.getLogger(BookStoreServiceImpl.class);
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     List<Book> bookList = new ArrayList<Book>(){
         {
             try {
-                add(new Book(1, "Book1", "Author1", simpleDateFormat.parse("02/15/2017")));
-                add(new Book(2,"Book2","Author2",simpleDateFormat.parse("08/25/2016")));
-                add(new Book(3,"Book3","Author3",simpleDateFormat.parse("04/13/2018")));
-                add(new Book(4,"Book4","Author4",simpleDateFormat.parse("11/19/2015")));
+                add(new Book(1, "Book1", "Author1", simpleDateFormat.parse("2017-02-15")));
+                add(new Book(2,"Book2","Author2",simpleDateFormat.parse("2016-08-25")));
+                add(new Book(3,"Book3","Author3",simpleDateFormat.parse("2018-04-13")));
+                add(new Book(4,"Book4","Author4",simpleDateFormat.parse("2015-11-19")));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -54,10 +54,10 @@ public class BookStoreServiceImpl implements BookStoreService {
     }
 
     @Override
-    public List<Book> searchBook(SearchRequest searchRequest) {
-        List<Book> collect = this.bookList.stream().filter(book ->
-            book.getBookId() == searchRequest.getBookId() || book.getBookName().equals(searchRequest.getBookName())
-            || book.getAuthor().equals(searchRequest.getAuthor())
+    public List<Book> searchBook(Book book) {
+        List<Book> collect = this.bookList.stream().filter(b ->
+            b.getBookId() == book.getBookId() || b.getBookName().equals(book.getBookName())
+            || b.getAuthor().equals(book.getAuthor()) || simpleDateFormat.format(b.getDateOfPublication()).equals(simpleDateFormat.format(book.getDateOfPublication()))
         ).collect(Collectors.toList());
         return collect;
     }
@@ -81,10 +81,10 @@ public class BookStoreServiceImpl implements BookStoreService {
     public boolean updateExistingBook(Book book) {
         int index = IntStream.range(0, this.bookList.size())
                 .filter(i -> book.getBookId() == this.bookList.get(i).getBookId())
-                .findFirst() // first occurence
+                .findFirst()
                 .orElse(-1);
         if(index != -1){
-            this.bookList.add(index, book);
+            this.bookList.set(index, book);
             return true;
         }
         return false;

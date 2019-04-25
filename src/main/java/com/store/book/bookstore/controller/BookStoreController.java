@@ -14,31 +14,32 @@ public class BookStoreController {
     @Autowired
     BookStoreService bookStoreService;
 
-    @RequestMapping(path = "/getallbook/{orderby}", method = RequestMethod.GET)
-    public List<Book> getAllBook(@PathVariable("orderby") String orderBy)
+
+    @RequestMapping(path = "/getbooks", method = RequestMethod.POST)
+    public List<Book> searchBook(@RequestBody Book book)
+    {
+        return bookStoreService.searchBook(book);
+    }
+
+    @RequestMapping(path = "/getbooks/{orderby}", method = RequestMethod.GET)
+    public @ResponseBody List<Book> getAllBook(@PathVariable("orderby") String orderBy)
     {
         return bookStoreService.getAllBookOrderBy(orderBy);
     }
 
-    @RequestMapping(path = "/searchbook}", method = RequestMethod.GET)
-    public List<Book> searchBook(@RequestBody SearchRequest searchRequest)
-    {
-        return bookStoreService.searchBook(searchRequest);
-    }
-
-    @RequestMapping(path = "/addbook}", method = RequestMethod.POST)
+    @RequestMapping(path = "/addbook", method = RequestMethod.POST)
     public boolean addBook(@RequestBody Book book)
     {
         return bookStoreService.addNewBook(book);
     }
 
-    @RequestMapping(path = "/updatebook}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/updatebook", method = RequestMethod.POST)
     public boolean updateBook(@RequestBody Book book)
     {
         return bookStoreService.updateExistingBook(book);
     }
 
-    @RequestMapping(path = "/removebook/{bookid}}", method = RequestMethod.DELETE)
+    @RequestMapping(path = "/removebook/{bookid}", method = RequestMethod.DELETE)
     public boolean removeBook(@PathVariable("bookid") int bookId)
     {
         return bookStoreService.removeBook(bookId);

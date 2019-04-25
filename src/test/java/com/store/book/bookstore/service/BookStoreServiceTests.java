@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -28,18 +29,18 @@ public class BookStoreServiceTests {
 
 	@Test
 	public void searchBookTest() {
-		SearchRequest searchRequest = new SearchRequest();
-		searchRequest.setBookId(2);
-		List<Book> listOfBook = bookStoreService.searchBook(searchRequest);
+		Book book = new Book(2, "", "", new Date());
+
+		List<Book> listOfBook = bookStoreService.searchBook(book);
 		assertEquals(listOfBook.get(0).getBookId(), 2);
 	}
 
 	@Test
 	public void addNewBookTest() {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Book book = null;
 		try {
-			book = new Book(11, "book11", "Author11", simpleDateFormat.parse("02/15/2017"));
+			book = new Book(11, "book11", "Author11", simpleDateFormat.parse("2017-02-15"));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -49,10 +50,10 @@ public class BookStoreServiceTests {
 
 	@Test
 	public void addNewBookWithExistingBookIdTest() {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Book book = null;
 		try {
-			book = new Book(1, "book1", "Author1", simpleDateFormat.parse("02/15/2017"));
+			book = new Book(1, "book1", "Author1", simpleDateFormat.parse("2017-02-15"));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
