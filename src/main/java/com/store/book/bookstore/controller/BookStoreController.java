@@ -38,7 +38,7 @@ public class BookStoreController {
         return bookStoreService.updateExistingBook(book);
     }
 
-    @RequestMapping(path = "/removebook/{bookid}}", method = RequestMethod.GET)
+    @RequestMapping(path = "/removebook/{bookid}}", method = RequestMethod.DELETE)
     public boolean removeBook(@PathVariable("bookid") int bookId)
     {
         return bookStoreService.removeBook(bookId);
