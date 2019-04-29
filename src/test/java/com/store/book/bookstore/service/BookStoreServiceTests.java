@@ -1,7 +1,6 @@
 package com.store.book.bookstore.service;
 
 import com.store.book.bookstore.model.Book;
-import com.store.book.bookstore.model.SearchRequest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

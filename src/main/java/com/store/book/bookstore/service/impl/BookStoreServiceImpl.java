@@ -1,7 +1,6 @@
 package com.store.book.bookstore.service.impl;
 
 import com.store.book.bookstore.model.Book;
-import com.store.book.bookstore.model.SearchRequest;
 import com.store.book.bookstore.service.BookStoreService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,6 +49,7 @@ public class BookStoreServiceImpl implements BookStoreService {
                     break;
             }
         }
+        logger.info("list of books: " + this.bookList);
         return this.bookList;
     }
 
