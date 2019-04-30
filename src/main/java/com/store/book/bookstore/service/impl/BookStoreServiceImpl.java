@@ -57,7 +57,7 @@ public class BookStoreServiceImpl implements BookStoreService {
     public List<Book> searchBook(Book book) {
         List<Book> collect = this.bookList.stream().filter(b ->
             b.getBookId() == book.getBookId() || b.getBookName().equals(book.getBookName())
-            || b.getAuthor().equals(book.getAuthor()) || simpleDateFormat.format(b.getDateOfPublication()).equals(simpleDateFormat.format(book.getDateOfPublication()))
+            || b.getAuthor().equals(book.getAuthor()) || (book.getDateOfPublication() != null && simpleDateFormat.format(b.getDateOfPublication()).equals(simpleDateFormat.format(book.getDateOfPublication())))
         ).collect(Collectors.toList());
         return collect;
     }
